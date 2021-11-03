@@ -1,5 +1,6 @@
 
 from Helper.input import prompt
+from Helper.input import Command
 
 def main():
     grid_height = prompt('Veuillez entrer la hauteur de la grille (entre 5 et 15) : ')
