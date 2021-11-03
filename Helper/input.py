@@ -3,3 +3,5 @@ def prompt(message):
 
     while prompt == '':
         prompt = input(message)
+
+    return prompt
