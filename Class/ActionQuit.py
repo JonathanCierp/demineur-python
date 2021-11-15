@@ -1,4 +1,3 @@
 class ActionQuit:
     
-    def __init__(self):
-        print('Hi, I\'m ActionQuit Class')
+    # def __init__(self):

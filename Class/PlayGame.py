@@ -1,4 +1,3 @@
 class PlayGame:
     
-    def __init__(self):
-        print('Hi, I\'m PlayGame Class')
+    # def __init__(self):
