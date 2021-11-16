@@ -10,4 +10,4 @@ class TileMine(Tile):
             return super().__str__()
 
         elif self.opened:
-            return 'O'
+            return 'B'

@@ -30,9 +30,9 @@ class Command():
                 print('Veuillez entrer des nombres !')
                 return self.askAction(message, mine_sweeper) # Rappelle cette fonction si l'utilisateur a rentré n'importequoi
             if action[0] == self.FLAG:
-                mine_sweeper.flag(action[1], action[2])
+                mine_sweeper.flag(int(action[1]), int(action[2]))
             elif action[0] == self.OPEN:
-                mine_sweeper.open(action[1], action[2])
+                mine_sweeper.open(int(action[1]), int(action[2]))
 
         else:
             print('Veuillez entrer une commande valide !')

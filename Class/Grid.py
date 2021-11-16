@@ -19,15 +19,36 @@ class Grid:
         self.initTileMines()
 
     def __str__(self) -> str:
-        string = '\n'
+        string = '\n '
+        # Indicateurs Colonnes
+        for i in range(1, self.width + 1, 1):
+            string = string + ' ' + str(i)
+        string = string + '\n'
+
+        # Grille
+        i = 1
         for key, tile in enumerate(self.tiles):
-            string = string + str(tile)
+            if (key + 1) % self.width == 1:
+                string = string + str(i)# Indicateur ligne
+                i += 1
+
+            string = string + ' ' + str(tile) # Tile
+            
             if (key + 1) % self.width == 0:
-                string = string + '\n'
+                string = string + '\n' # Nouvelle ligne
         
         return string
 
-    def getTile(self, x, y):
+    def open(self, x: int, y: int):
+        tile = self.getTile(x, y)
+        if tile.opened:
+            raise Exception('Tile is opened')
+        elif tile.flagged:
+            raise Exception('Tile is flagged')
+
+        tile.opened = True
+
+    def getTile(self, x: int, y: int):
         for tile in self.tiles:
             if tile.x == x and tile.y == y:
                 return tile
