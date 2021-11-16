@@ -1,4 +1,5 @@
 from Class.Grid import Grid
+from Class.TileMine import TileMine
 from Helper.Command import Command
 
 class MineSweeper:
@@ -18,6 +19,13 @@ class MineSweeper:
     def isWin(self):
         if self.grid.remaining == 0:
             return True
+        
+        return False
+
+    def isLost(self):
+        for tile in self.grid.tiles:
+            if isinstance(tile, TileMine) and tile.opened:
+                return True
         
         return False
 
