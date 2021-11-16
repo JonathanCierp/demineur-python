@@ -16,7 +16,7 @@ class MineSweeper:
         self.is_playing = False
         self.game_over = False
 
-    def isWin(self):
+    def isWon(self):
         if self.grid.remaining == 0:
             return True
         
@@ -40,6 +40,12 @@ class MineSweeper:
         self.checkCoords(x, y)
 
         self.grid.open(x, y)
+
+        if self.isWon():
+            raise Exception('Game is won !')
+
+        if self.isLost():
+            raise Exception('Game is lost !')
 
 
     def flag(self, x: int, y: int):
