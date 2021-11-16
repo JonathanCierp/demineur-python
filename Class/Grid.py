@@ -48,6 +48,16 @@ class Grid:
 
         tile.opened = True
 
+    def toggleFlag(self, x: int, y: int):
+        tile = self.getTile(x, y)
+        if tile.opened:
+            raise Exception('Tile is opened')
+        
+        if tile.flagged:
+            tile.flagged = False
+        else:
+            tile.flagged = True
+
     def getTile(self, x: int, y: int):
         for tile in self.tiles:
             if tile.x == x and tile.y == y:

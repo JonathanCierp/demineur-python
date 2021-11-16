@@ -14,8 +14,7 @@ class TileHint(Tile):
         elif self._hint == 0:
             return '0'
 
-        else:
-            return str(self._hint)
+        return str(self._hint)
 
     @property
     def hint(self):

@@ -14,5 +14,4 @@ class Tile:
         elif not self.opened:
             return '#'
 
-        elif self.opened:
-            raise NotImplementedError
+        raise NotImplementedError

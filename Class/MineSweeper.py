@@ -23,22 +23,23 @@ class MineSweeper:
         self.play()
 
     def open(self, x: int, y: int):
-        if not self.is_playing:
-            raise Exception('Playing is false !')
-        elif x <= 0 or x > self.grid.width or y <= 0 or y > self.grid.height:
-            raise Exception('Mauvaises coordonnées !')
+        self.checkCoords(x, y)
 
         self.grid.open(x, y)
-        print('Open - cell x: ' + str(x) + ', y:' + str(y))
 
 
     def flag(self, x: int, y: int):
-        if not self.is_playing:
-            raise Exception('Playing is false !')
+        self.checkCoords(x, y)
 
-        print('Flag - cell x: ' + str(x) + ', y:' + str(y))
+        self.grid.toggleFlag(x, y)
     
     def play(self):
         while not self.game_over :
             print(str(self.grid))
             answer = self.command.askAction('Entrez une commande (help pour la liste des commandes) : ', self)
+
+    def checkCoords(self, x: int, y: int):
+        if not self.is_playing:
+            raise Exception('Playing is false !')
+        elif x <= 0 or x > self.grid.width or y <= 0 or y > self.grid.height:
+            raise Exception('Mauvaises coordonnées !')

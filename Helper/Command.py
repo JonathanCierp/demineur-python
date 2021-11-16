@@ -26,6 +26,9 @@ class Command():
         
         elif action[0] == self.FLAG or action[0] == self.OPEN:
             action = action.split(' ')
+            if len(action) < 3:
+                print('Veuillez entrer une commande valide !')
+                return self.askAction(message, mine_sweeper) # Rappelle cette fonction si l'utilisateur a rentré n'importequoi
             if not action[1].isdigit() or not action[2].isdigit():
                 print('Veuillez entrer des nombres !')
                 return self.askAction(message, mine_sweeper) # Rappelle cette fonction si l'utilisateur a rentré n'importequoi
