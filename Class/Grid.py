@@ -17,9 +17,10 @@ class Grid:
         self.initTileHints()
         self.initTileMinesCoords()
         self.initTileMines()
+        self.remaining = len(self.tiles) - len(self.tile_mines_coords)
 
     def __str__(self) -> str:
-        string = 'Remaining: 5\n '
+        string = '\nRemaining: ' + str(self.remaining) + '\n\n '
         # Indicateurs Colonnes
         for i in range(1, self.width + 1, 1):
             string = string + ' ' + str(i)
@@ -47,6 +48,7 @@ class Grid:
             raise Exception('Tile is flagged')
 
         tile.opened = True
+        self.remaining -= 1
 
     def toggleFlag(self, x: int, y: int):
         tile = self.getTile(x, y)
@@ -84,6 +86,6 @@ class Grid:
 
     def initTileHints(self):
         self.tiles = []
-        for x in range(1, self.width + 1):
-            for y in range(1, self.height + 1):
+        for y in range(1, self.height + 1):
+            for x in range(1, self.width + 1):
                 self.tiles.append(TileHint(self, x, y))
