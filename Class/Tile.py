@@ -15,3 +15,6 @@ class Tile:
             return '#'
 
         raise NotImplementedError
+
+    def open(self):
+        self.opened = True

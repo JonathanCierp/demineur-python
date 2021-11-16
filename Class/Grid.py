@@ -40,6 +40,12 @@ class Grid:
         
         return string
 
+    def openFull(self, tile):
+        tile.open()
+        
+        if isinstance(tile, TileHint):
+            self.remaining -= 1
+
     def open(self, x: int, y: int):
         tile = self.getTile(x, y)
         if tile.opened:
@@ -47,8 +53,7 @@ class Grid:
         elif tile.flagged:
             raise Exception('Tile is flagged')
 
-        tile.opened = True
-        self.remaining -= 1
+        self.openFull(tile)
 
     def toggleFlag(self, x: int, y: int):
         tile = self.getTile(x, y)
@@ -70,7 +75,10 @@ class Grid:
             for tile_mines_coord in self.tile_mines_coords:
                 if tile.x == tile_mines_coord[0] and tile.y == tile_mines_coord[1]:
                     self.tiles[key] = TileMine(self, tile.x, tile.y)
-            tile.hint = None # Permet de calculer le nombre de bombes autour de chaque tile
+        
+        for tile in self.tiles:
+            if isinstance(tile, TileHint):
+                tile.hint = None # Permet de calculer le nombre de bombes autour de chaque tile
 
     def initTileMinesCoords(self):
         self.tile_mines_coords = []
