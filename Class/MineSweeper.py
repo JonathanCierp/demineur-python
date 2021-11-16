@@ -15,6 +15,12 @@ class MineSweeper:
         self.is_playing = False
         self.game_over = False
 
+    def isWin(self):
+        if self.grid.remaining == 0:
+            return True
+        
+        return False
+
     def newGame(self):
         print('Here is a new Game !')
         self.is_playing = True
