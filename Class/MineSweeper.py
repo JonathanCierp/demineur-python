@@ -20,6 +20,7 @@ class MineSweeper:
         self.is_playing = True
         self.game_over = False
         self.grid = Grid()
+        print(str(self.grid))
         self.play()
 
     def open(self, x, y):
