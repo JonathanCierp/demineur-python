@@ -19,7 +19,7 @@ class Grid:
         self.initTileMines()
 
     def __str__(self) -> str:
-        string = '\n '
+        string = 'Remaining: 5\n '
         # Indicateurs Colonnes
         for i in range(1, self.width + 1, 1):
             string = string + ' ' + str(i)
