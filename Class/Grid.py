@@ -43,6 +43,7 @@ class Grid:
     def openFull(self, tile):
         tile.open()
         
+        # Pour chaque tuile autour de celle-ci on les ouvre si ce n'est pas une bombe, si elle n'est pas ouverte mais aussi si son indice est de 0
         for tileAround in tile.tilesAround:
             tileAround = self.getTile(tileAround[0], tileAround[1])
             if isinstance(tileAround, TileHint):
