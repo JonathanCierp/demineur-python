@@ -16,6 +16,12 @@ class MineSweeper:
         self.is_playing = False
         self.game_over = False
 
+    def isPlaying(self):
+        if self.is_playing and not self.isWon() and not self.isLost():
+            return True
+
+        return False
+
     def isWon(self):
         if self.grid.remaining == 0:
             return True
