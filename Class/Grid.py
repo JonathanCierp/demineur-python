@@ -46,8 +46,8 @@ class Grid:
         for tileAround in tile.tilesAround:
             tileAround = self.getTile(tileAround[0], tileAround[1])
             if isinstance(tileAround, TileHint):
-                if tileAround.hint == 0:
-                    tileAround.open()
+                if not tileAround.opened and tileAround.hint == 0:
+                    self.openFull(tileAround)
                     self.remaining -= 1
 
     def open(self, x: int, y: int):
