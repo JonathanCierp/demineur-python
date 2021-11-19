@@ -15,8 +15,7 @@ class Grid:
 
         self.initSizes()
         self.initTileHints()
-        self.initTileMinesCoords()
-        self.initTileMines()
+        self.tile_mines_coords = []
         self.remaining = len(self.tiles) - len(self.tile_mines_coords)
 
     def __str__(self) -> str:
@@ -79,7 +78,8 @@ class Grid:
             if tile.x == x and tile.y == y:
                 return tile
 
-    def initTileMines(self):
+    def initTileMines(self, first_open_coords):
+        self.initTileMinesCoords(first_open_coords)
         for key, tile in enumerate(self.tiles):
             for tile_mines_coord in self.tile_mines_coords:
                 if tile.x == tile_mines_coord[0] and tile.y == tile_mines_coord[1]:
@@ -89,13 +89,17 @@ class Grid:
             if isinstance(tile, TileHint):
                 tile.hint = None # Permet de calculer le nombre de bombes autour de chaque tile
 
-    def initTileMinesCoords(self):
+    def initTileMinesCoords(self, first_open_coords):
         self.tile_mines_coords = []
         for tile in self.tiles:
             self.tile_mines_coords.append((tile.x, tile.y))
 
         mines_number = round(self.MINES_PERCENT / 100 * len(self.tiles))
         self.tile_mines_coords = sample(self.tile_mines_coords, mines_number)
+        
+        # Empeche la mine de spawn au même endroit que la première ouverture
+        if first_open_coords in self.tile_mines_coords:
+            self.initTileMinesCoords(first_open_coords)
 
     def initSizes(self):
         self.height = self.command.askGridSize('Veuillez entrer la hauteur de la grille (entre ' + str(self.MIN_SIZE) + ' et ' + str(self.MAX_SIZE) + ') : ', self)

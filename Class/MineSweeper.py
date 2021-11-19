@@ -35,21 +35,28 @@ class MineSweeper:
     def newGame(self):
         print('Nouvelle partie !')
         self.game_over = False
+        self.need_init_mines = True
         self.grid = Grid()
         self.play()
 
     def open(self, x: int, y: int):
         self.checkCoords(x, y)
+        
+        if self.need_init_mines:
+            self.grid.initTileMines((x, y))
+            self.need_init_mines = False
 
         self.grid.open(x, y)
 
         if self.isWon():
-            print('\nGagné !')
             self.game_over = True
+            print(str(self.grid))
+            print('\nGagné !')
 
         if self.isLost():
-            print('\nPerdu !')
             self.game_over = True
+            print(str(self.grid))
+            print('\nPerdu !')
 
 
     def flag(self, x: int, y: int):
