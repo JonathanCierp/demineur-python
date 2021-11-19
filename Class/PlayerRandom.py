@@ -1,3 +1,3 @@
-class PlayerRandom:
-    
-    # def __init__(self):
+from Class.Player import Player
+
+class PlayerRandom(Player):
