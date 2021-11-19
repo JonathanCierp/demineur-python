@@ -20,7 +20,7 @@ class Grid:
         self.remaining = len(self.tiles) - len(self.tile_mines_coords)
 
     def __str__(self) -> str:
-        string = '\nRemaining: ' + str(self.remaining) + '\n\n '
+        string = '\nRestant: ' + str(self.remaining) + '\n\n '
         # Indicateurs Colonnes
         for i in range(1, self.width + 1, 1):
             string = string + ' ' + str(i)
@@ -41,29 +41,33 @@ class Grid:
         return string
 
     def openFull(self, tile):
-        tile.open()
-        
         # Pour chaque tuile autour de celle-ci on les ouvre si ce n'est pas une bombe, si elle n'est pas ouverte mais aussi si son indice est de 0
         for tileAround in tile.tilesAround:
             tileAround = self.getTile(tileAround[0], tileAround[1])
             if isinstance(tileAround, TileHint):
-                if not tileAround.opened and tileAround.hint == 0:
-                    self.openFull(tileAround)
+                if not tileAround.opened:
+                    tileAround.open()
                     self.remaining -= 1
+        
 
     def open(self, x: int, y: int):
         tile = self.getTile(x, y)
         if tile.opened:
-            raise Exception('Tile is opened')
+            print('Case déjà ouverte !')
         elif tile.flagged:
-            raise Exception('Tile is flagged')
+            print('Case drapeau !')
 
-        self.openFull(tile)
+        tile.open()
+        
+        if isinstance(tile, TileMine):
+            return
+
+        self.remaining -= 1
 
     def toggleFlag(self, x: int, y: int):
         tile = self.getTile(x, y)
         if tile.opened:
-            raise Exception('Tile is opened')
+            print('Case déjà ouverte !')
         
         if tile.flagged:
             tile.flagged = False

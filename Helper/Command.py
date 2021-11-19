@@ -12,10 +12,10 @@ class Command():
         action = prompt(message)
 
         if action == self.HELP:
-            print('    - ' + self.FLAG + ' <X> <Y> (put a flag in a cell)')
-            print('    - ' + self.OPEN + ' <X> <Y> (open a cell)')
-            print('    - ' + self.NEW_GAME + ' (begin a new game)')
-            print('    - ' + self.QUIT + ' (leave the game)')
+            print('    - ' + self.FLAG + ' <X> <Y> (mettre un drapeau dans une case)')
+            print('    - ' + self.OPEN + ' <X> <Y> (ouvir une case)')
+            print('    - ' + self.NEW_GAME + ' (commence une nouvelle partie)')
+            print('    - ' + self.QUIT + ' (quitter la partie)')
             return self.askAction(message, mine_sweeper) # Rappelle cette fonction après le 'help' afin de reposer la question à l'utilisateur
 
         elif action == self.NEW_GAME:

@@ -26,6 +26,12 @@ class TileHint(Tile):
 
         return str(self.hint)
 
+    def open(self):
+        self.opened = True
+
+        if self._hint == 0:
+            self.grid.openFull(self)
+
     @property
     def hint(self):
         return self._hint

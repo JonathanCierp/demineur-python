@@ -33,7 +33,7 @@ class MineSweeper:
         return False
 
     def newGame(self):
-        print('Here is a new Game !')
+        print('Nouvelle partie !')
         self.game_over = False
         self.grid = Grid()
         self.play()
@@ -44,10 +44,12 @@ class MineSweeper:
         self.grid.open(x, y)
 
         if self.isWon():
-            raise Exception('Game is won !')
+            print('\nGagné !')
+            self.game_over = True
 
         if self.isLost():
-            raise Exception('Game is lost !')
+            print('\nPerdu !')
+            self.game_over = True
 
 
     def flag(self, x: int, y: int):
@@ -61,7 +63,5 @@ class MineSweeper:
             answer = self.command.askAction('Entrez une commande (help pour la liste des commandes) : ', self)
 
     def checkCoords(self, x: int, y: int):
-        if self.game_over:
-            raise Exception('GameOver !')
-        elif x <= 0 or x > self.grid.width or y <= 0 or y > self.grid.height:
-            raise Exception('Mauvaises coordonnées !')
+        if x <= 0 or x > self.grid.width or y <= 0 or y > self.grid.height:
+            print('\nMauvaises coordonnées !')
