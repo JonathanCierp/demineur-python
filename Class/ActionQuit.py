@@ -1,3 +1,3 @@
-class ActionQuit:
-    
-    # def __init__(self):
+from Class.Action import Action
+
+class ActionQuit(Action):

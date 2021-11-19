@@ -1,3 +1,3 @@
-class ActionNewGame:
-    
-    # def __init__(self):
+from Class.Action import Action
+
+class ActionNewGame(Action):

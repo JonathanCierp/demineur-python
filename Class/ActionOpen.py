@@ -1,3 +1,6 @@
-class ActionOpen:
+from Class.Action import Action
+
+class ActionOpen(Action):
     
-    # def __init__(self):
+    def __init__(self, coords: tuple):
+        self.coords = coords
