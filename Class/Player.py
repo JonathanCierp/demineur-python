@@ -1,3 +1,4 @@
+from Class.MineSweeper import MineSweeper
 from Helper.input import prompt
 from Class.ActionNewGame import ActionNewGame
 from Class.ActionQuit import ActionQuit
@@ -11,6 +12,9 @@ class Player:
     HELP = 'help'
     NEW_GAME = 'new game'
     QUIT = 'quit'
+
+    def __init__(self, mine_sweeper: MineSweeper) -> None:
+        self.mine_sweeper = mine_sweeper
     
     def getAction(self):
         message = 'Entrez une commande (help pour la liste des commandes) : '
@@ -45,3 +49,8 @@ class Player:
         else:
             print('Veuillez entrer une commande valide !')
             return self.getAction(message) # Rappelle cette fonction si l'utilisateur a rentré n'importequoi
+
+    def gameOver(self):
+        self.mine_sweeper.game_over = True
+        print(str(self.mine_sweeper.grid))
+        print('\nPerdu !')
