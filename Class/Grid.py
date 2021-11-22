@@ -1,6 +1,6 @@
+from Class.PlayerHuman import PlayerHuman
 from Class.TileHint import TileHint
 from Class.TileMine import TileMine
-from Helper.Command import Command
 from random import sample
 
 class Grid:
@@ -11,12 +11,12 @@ class Grid:
     MINES_PERCENT = 10
 
     def __init__(self):
-        self.command = Command()
+        self.player_human = PlayerHuman()
 
         self.initSizes()
         self.initTileHints()
         self.tile_mines_coords = []
-        self.remaining = len(self.tiles) - len(self.tile_mines_coords)
+        self.remaining = len(self.tiles)
 
     def __str__(self) -> str:
         string = '\nRestant: ' + str(self.remaining) + '\n\n '
@@ -53,8 +53,10 @@ class Grid:
         tile = self.getTile(x, y)
         if tile.opened:
             print('Case déjà ouverte !')
+            return
         elif tile.flagged:
             print('Case drapeau !')
+            return
 
         tile.open()
         
@@ -67,6 +69,7 @@ class Grid:
         tile = self.getTile(x, y)
         if tile.opened:
             print('Case déjà ouverte !')
+            return
         
         if tile.flagged:
             tile.flagged = False
@@ -88,6 +91,8 @@ class Grid:
         for tile in self.tiles:
             if isinstance(tile, TileHint):
                 tile.hint = None # Permet de calculer le nombre de bombes autour de chaque tile
+        
+        self.remaining = len(self.tiles) - len(self.tile_mines_coords)
 
     def initTileMinesCoords(self, first_open_coords):
         self.tile_mines_coords = []
@@ -102,8 +107,8 @@ class Grid:
             self.initTileMinesCoords(first_open_coords)
 
     def initSizes(self):
-        self.height = self.command.askGridSize('Veuillez entrer la hauteur de la grille (entre ' + str(self.MIN_SIZE) + ' et ' + str(self.MAX_SIZE) + ') : ', self)
-        self.width = self.command.askGridSize('Veuillez entrer la largeur de la grille (entre ' + str(self.MIN_SIZE) + ' et ' + str(self.MAX_SIZE) + ') : ', self)
+        self.height = self.player_human.askGridSize('Veuillez entrer la hauteur de la grille (entre ' + str(self.MIN_SIZE) + ' et ' + str(self.MAX_SIZE) + ') : ', self)
+        self.width = self.player_human.askGridSize('Veuillez entrer la largeur de la grille (entre ' + str(self.MIN_SIZE) + ' et ' + str(self.MAX_SIZE) + ') : ', self)
 
     def initTileHints(self):
         self.tiles = []

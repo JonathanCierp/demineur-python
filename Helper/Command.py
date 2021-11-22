@@ -41,15 +41,4 @@ class Command():
             print('Veuillez entrer une commande valide !')
             return self.askAction(message, mine_sweeper) # Rappelle cette fonction si l'utilisateur a rentré n'importequoi
 
-    def askGridSize(self, message, grid):
-        grid_size = prompt(message)
-
-        if not grid_size.isdigit():
-            print('Veuillez entrer un nombre !')
-            return self.askGridSize(message, grid) # Rappelle cette fonction si l'utilisateur a rentré n'importequoi
-        
-        elif int(grid_size) < grid.MIN_SIZE or int(grid_size) > grid.MAX_SIZE:
-            print('Veuillez entrer un nombre valide !')
-            return self.askGridSize(message, grid) # Rappelle cette fonction si l'utilisateur a rentré n'importequoi
-
-        return int(grid_size)
+    

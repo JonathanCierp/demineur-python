@@ -1,6 +1,6 @@
 from Class.Action import Action
 
 class ActionFlag(Action):
-    
-    def __init__(self, coords: tuple):
-        self.coords = coords
+
+    def action(self, coords: tuple):
+        self.mine_sweeper.flag(coords[0], coords[1])
